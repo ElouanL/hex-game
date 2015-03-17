@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('Hex', []);
+var app = angular.module('Hex', ['ngRoute']);
 
 var ColorEnum = {
     RED : 0,

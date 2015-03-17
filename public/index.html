@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Hex Game</title>
     <script src="bower_components/angularjs/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="app.js"></script>
 
     <!-- Controllers-->
@@ -11,17 +12,15 @@
     <!-- Directives -->
     <script src="directives/plateauDirective.js"></script>
 
-</head>
-<plateau></plateau>
-<body ng-controller="PlateauController">
-
-<!--<svg width="100" height="100">
-    <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
-</svg>
-<svg ng-click="couleur='black'" width="50" height="50">
-    <polygon points="0,35 0,15 25,0 50,15 50,35 25,50"
-             style="stroke-width:5;" stroke="{{couleur}}" stroke-width="4" />
-</svg>-->
+</head><body ng-controller="MainController">
+<span ng-repeat="(i, case) in caseTable">
+    <span ng-if="case.ligne>caseTable[i-1].ligne">
+        <br>
+        <svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>
+    </span>
+    <plateau></plateau>
+</span>
+<!--
 <svg ng-click="couleur='black'" width="50" height="50">
     <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
              style="stroke-width:2;" stroke="{{couleur}}" fill="white" stroke-width="0.5" />
@@ -63,10 +62,7 @@
              style="stroke-width:2;" stroke="grey" fill="white" stroke-width="0.5" />
 </svg><br>
 <svg width="23" height="50"></svg>
-
-
-
-{{ouou}}
+-->
 
 </body>
 </html>
