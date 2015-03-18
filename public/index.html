@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Hex Game</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/jumbotron-narrow.css" />
     <script src="bower_components/angularjs/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="app.js"></script>
@@ -13,14 +14,44 @@
     <!-- Directives -->
     <script src="directives/plateauDirective.js"></script>
 
-</head><body ng-controller="MainController">
-<span ng-repeat="(i, case) in caseTable">
-    <span ng-if="case.ligne>caseTable[i-1].ligne">
-        <br>
-        <svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>
+</head>
+
+<body>
+<div class="container" ng-controller="MainController">
+    <div class="header hidden-print" ng-init="onPile=1">
+        <ul class="nav nav-pills pull-right">
+            <li ng-class="{ active : $l.path().substr(0,9)=='/commerci' }">
+                <a href="#/2joueurs" ng-click="onglet=1">
+                    2 Joueurs
+                </a>
+            </li>
+            <li ng-class="{ active : $l.path().substr(0,9)=='/producti' }">
+                <a href="#/joueurvsia1" ng-click="onglet=2">
+                    Joueur Vs IA1
+                </a>
+            </li>
+            <li ng-class="{ active : $l.path().substr(0,9)=='/parametr' }">
+                <a href="#/joueurvsia2" ng-click="onglet=3">
+                    Joueur vs IA2
+                </a>
+            </li>
+            <li ng-class="{ active : $l.path().substr(0,9)=='/parametr' }">
+                <a href="#/iavsia" ng-click="onglet=3">
+                    IA vs IA
+                </a>
+            </li>
+        </ul>
+        <h3 class="text-muted">Hex Game</h3>
+    </div>
+    <span ng-repeat="(i, case) in caseTable">
+        <span ng-if="case.ligne>caseTable[i-1].ligne">
+            <br>
+            <svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>
+        </span>
+        <plateau></plateau>
     </span>
-    <plateau></plateau>
-</span>
+    <div ng-view></div>
+</div>
 <!--
 <svg ng-click="couleur='black'" width="50" height="50">
     <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
