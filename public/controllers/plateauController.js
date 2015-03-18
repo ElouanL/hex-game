@@ -6,39 +6,48 @@ app.controller('MainController', function($scope){
     $scope.caseTable = [
         {
             ligne:1,
-            colonne:1
+            colonne:1,
+            couleur:"white"
         },
         {
             ligne:1,
-            colonne:2
+            colonne:2,
+            couleur:"white"
         },
         {
             ligne:1,
-            colonne:3
+            colonne:3,
+            couleur:"white"
         },
         {
             ligne:2,
-            colonne:1
+            colonne:1,
+            couleur:"white"
         },
         {
             ligne:2,
-            colonne:2
+            colonne:2,
+            couleur:"white"
         },
         {
             ligne:2,
-            colonne:3
+            colonne:3,
+            couleur:"white"
         },
         {
             ligne:3,
-            colonne:1
+            colonne:1,
+            couleur:"white"
         },
         {
             ligne:3,
-            colonne:2
+            colonne:2,
+            couleur:"white"
         },
         {
             ligne:3,
-            colonne:3
+            colonne:3,
+            couleur:"white"
         }
     ];
 
