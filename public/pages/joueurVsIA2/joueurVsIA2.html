@@ -1,0 +1,7 @@
+<span ng-repeat="(i, case) in caseTable">
+    <span ng-if="case.ligne>caseTable[i-1].ligne">
+        <br>
+        <svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>
+    </span>
+    <plateau></plateau>
+</span>

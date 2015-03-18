@@ -4,23 +4,24 @@ app.config(
     function($routeProvider){
         $routeProvider
             .when('/', {
-                templateUrl: 'blabla.html'
+                controller: '2joueursController',
+                templateUrl: 'pages/2joueurs/2joueurs.html'
             })
             .when('/2joueurs', {
-                controller: 'CommandeController',
-                templateUrl: 'views/commercial/commande/commande.html'
+                controller: '2joueursController',
+                templateUrl: 'pages/2joueurs/2joueurs.html'
             })
             .when('/joueurvsia1', {
-                controller: 'BonCommandeController',
-                templateUrl: 'views/commercial/commande/bon-commande.html'
+                controller: 'JoueurVsIA1Controller',
+                templateUrl: 'pages/joueurVsIA1/joueurVsIA1.html'
             })
             .when('/joueurvsia2', {
-                controller: 'ClientController',
-                templateUrl: 'views/commercial/client/client.html'
+                controller: 'JoueurVsIA2Controller',
+                templateUrl: 'pages/joueurVsIA2/joueurVsIA2.html'
             })
             .when('/iavsia', {
-                controller: 'CommandeParProduitController',
-                templateUrl: 'views/commercial/commandeParProduit/commandeParProduit.html'
+                controller: 'IAvsIAController',
+                templateUrl: 'pages/IAvsIA/IAvsIA.html'
             })
     }
 );

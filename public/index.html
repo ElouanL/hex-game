@@ -8,9 +8,15 @@
     <script src="bower_components/angularjs/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="app.js"></script>
+    <script type="text/javascript" src="routing.js"></script>
+
 
     <!-- Controllers-->
     <script src="controllers/plateauController.js"></script>
+    <script src="pages/2joueurs/2joueursController.js"></script>
+    <script src="pages/IAvsIA/IAvsIAController.js"></script>
+    <script src="pages/joueurVsIA1/joueurVsIAController.js"></script>
+    <script src="pages/joueurVsIA2/joueurVsIAController.js"></script>
     <!-- Directives -->
     <script src="directives/plateauDirective.js"></script>
 
@@ -43,13 +49,6 @@
         </ul>
         <h3 class="text-muted">Hex Game</h3>
     </div>
-    <span ng-repeat="(i, case) in caseTable">
-        <span ng-if="case.ligne>caseTable[i-1].ligne">
-            <br>
-            <svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>
-        </span>
-        <plateau></plateau>
-    </span>
     <div ng-view></div>
 </div>
 <!--
