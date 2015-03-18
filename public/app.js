@@ -62,6 +62,14 @@ function parcourCases(i, j, couleur, plateauCopie) {
     return false;
 }
 
+function playIA() {
+    var plateauCopie = plateau.copy();
+
+    //TODO chiffre aléatoire pour i, j dans la liste des meilleurs mouvements
+
+    alphabeta(plateauCopie, posI, posJ, 4, -infinite, infinite, ColorEnum.RED);
+}
+
 //TODO : appel initial => alphabeta(origin, depth, -Infinity, Infinity, ColorEnum.GREEN)
 
 function alphabeta(plateau, posI, posJ, depth, alpha, beta, player) {
