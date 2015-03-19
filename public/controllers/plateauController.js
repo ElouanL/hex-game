@@ -74,8 +74,31 @@ app.controller('MainController', function($scope){
     $scope.ouou = 'Comment ca va ?';
     $scope.couleur = 'green';
 
+    $scope.caseTableToPlateau = function(){
+        var plateau = [];
+        var ligne = [];
+        $scope.caseTable.forEach(function(c, i){
+            if($scope.caseTable[i-1] && c.ligne > $scope.caseTable[i-1].ligne){
+                plateau.push(ligne);
+                ligne = [];
+            }
+            ligne.push(c.couleur);
+        });
+        return plateau
+    };
 
-
+    $scope.plateauToCaseTable = function(table){
+        $scope.caseTable = [];
+        table.forEach(function(c, i){
+            c.forEach(function(couleur, j){
+                caseTable.push({
+                    ligne: i,
+                    colonne: j,
+                    couleur: couleur
+                });
+            });
+        });
+    };
 
 });
 app.controller('PlateauController', function($scope){

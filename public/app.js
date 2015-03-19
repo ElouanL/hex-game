@@ -23,7 +23,7 @@ var plateauToCaseTable = function(){
 
 
 var ColorEnum = {
-    RED : ,
+    RED : 0,
     GREEN : 1,
     NONE : 2
 };
@@ -167,7 +167,7 @@ function alphabeta(plateau, posI, posJ, depth, alpha, beta, player) {
 function heuristic(plateau, posI, posJ, player) {
     plateau[i][j]=player;
     var victorious = gagnant(plateau);
-    
+
     if(victorious == ColorEnum.GREEN)
         return 3000;
     if(victorious == ColorEnum.RED)
