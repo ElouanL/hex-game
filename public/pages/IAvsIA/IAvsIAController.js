@@ -3,4 +3,5 @@
  */
 app.controller('IAvsIAController', function($scope){
     $scope.test = "bonjour !";
+
 });
