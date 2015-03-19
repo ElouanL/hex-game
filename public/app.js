@@ -60,13 +60,13 @@ function gagnant(mPlateau){
 
 function parcourCases(i, j, couleur, plateauCopie) {
     if(i>=0 && i<taillePlateau && j>=0 && j<taillePlateau) {
-        if((plateauCopie[i,j] == ColorEnum.GREEN && j==taillePlateau-1) ||
-            (plateauCopie[i,j] == ColorEnum.RED && i==taillePlateau-1))
+        if((plateauCopie[i][j] == ColorEnum.GREEN && j==taillePlateau-1) ||
+            (plateauCopie[i][j] == ColorEnum.RED && i==taillePlateau-1))
         {
             return true;
         }else{
-            if(couleur == plateauCopie[i, j]){
-                plateauCopie[i,j] = ColorEnum.NONE;
+            if(couleur == plateauCopie[i][j]){
+                plateauCopie[i][j] = ColorEnum.NONE;
                 for(var k=-1; k<=1; k++){
                     for(var l=-1; l<=1; l++){
                         if((k!=l) || i==0 || j==0){
@@ -179,11 +179,11 @@ function heuristic(plateau, posI, posJ, player) {
     if(victorious == ColorEnum.RED && (posJ==0 || posJ==taillePlateau-1))
         return -3000;
 
-    if(plateau[posI, posJ] == ColorEnum.GREEN)
+    if(plateau[posI][posJ] == ColorEnum.GREEN)
         return 3000;
-    if(plateau[posI, posJ] == ColorEnum.RED)
+    if(plateau[posI][posJ] == ColorEnum.RED)
         return -3000;
-    if(plateau[posI, posJ] == ColorEnum.NONE)
+    if(plateau[posI][posJ] == ColorEnum.NONE)
         return -1500;
 
     return 0;
