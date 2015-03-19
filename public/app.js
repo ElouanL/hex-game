@@ -51,7 +51,7 @@ function gagnant(mPlateau){
     couleur = ColorEnum.RED;
     for(j=0 ; j<taillePlateau ; j++) {
         if (parcourCases(i, j, couleur, plateauCopie)) {
-            return ColorEnum.GREEN;
+            return ColorEnum.RED;
         }
     }
 
@@ -86,16 +86,50 @@ function parcourCases(i, j, couleur, plateauCopie) {
 function playIA() {
     var plateauCopie = plateau.copy();
 
-    //TODO chiffre aléatoire pour i, j dans la liste des meilleurs mouvements
+    var couleur = ColorEnum.RED;
 
-    alphabeta(plateauCopie, posI, posJ, 4, -infinite, infinite, ColorEnum.RED);
+    var listeCasesValeur = new Array();
+
+    for(var i=0 ; i<taillePlateau ; i++) {
+        for(var j=0 ; j<taillePlateau ; j++) {
+            if (plateau[i][j] == ColorEnum.NONE) {
+                var valeur = alphabeta(plateauCopie, i, j, 4, -infinite, infinite, couleur);
+                listeCasesValeur.push({ligne : i, colonne : j, valeur : valeur});
+            }
+        }
+    }
+
+    var caseJeu = listeMin(listeCasesValeur);
+    //TODO jouer sur la case
+}
+
+function listeMin(listeCasesValeur) {
+    var listeMin = new Array();
+    var minVal = +infinite;
+
+    listeCasesValeur.forEach(function (element) {
+        if(element.valeur < minVal){
+            listeMin.clear();
+            minVal = element.valeur;
+            listeMin.push(element);
+        } else if(element.valeur == minVal){
+            listeMin.push(element);
+        }
+    });
+
+    if(listeMin.length = 1){
+        return listeMin(0);
+    } else {
+        var elemNum = Math.floor(Math.random() * listeMin.length);
+        return listeMin(elemNum);
+    }
 }
 
 //TODO : appel initial => alphabeta(origin, depth, -Infinity, Infinity, ColorEnum.GREEN)
 
 function alphabeta(plateau, posI, posJ, depth, alpha, beta, player) {
     if (depth = 0 || posI==0 || posJ==0 || posI==taillePlateau-1 || posJ==taillePlateau-1)
-        return heuristic(plateau, posI, posJ);
+        return heuristic(plateau, posI, posJ, player);
 
     if (player == ColorEnum.GREEN) { //Joueur humain
         var v = -infinite;
@@ -130,7 +164,8 @@ function alphabeta(plateau, posI, posJ, depth, alpha, beta, player) {
     }
 }
 
-function heuristic(plateau, posI, posJ) {
+function heuristic(plateau, posI, posJ, player) {
+    plateau[i][j]=player;
     var victorious = gagnant(plateau);
     
     if(victorious == ColorEnum.GREEN)
@@ -143,6 +178,13 @@ function heuristic(plateau, posI, posJ) {
         return 3000;
     if(victorious == ColorEnum.RED && (posJ==0 || posJ==taillePlateau-1))
         return -3000;
+
+    if(plateau[posI, posJ] == ColorEnum.GREEN)
+        return 3000;
+    if(plateau[posI, posJ] == ColorEnum.RED)
+        return -3000;
+    if(plateau[posI, posJ] == ColorEnum.NONE)
+        return -1500;
 
     return 0;
 }
