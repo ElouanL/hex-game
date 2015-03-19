@@ -195,8 +195,6 @@ app.controller('MainController', function($scope){
         }
     }
 
-//TODO : appel initial => alphabeta(origin, depth, -Infinity, Infinity, ColorEnum.GREEN)
-
     function alphabeta(plateau, posI, posJ, depth, alpha, beta, player) {
         if (depth = 0 || posI==0 || posJ==0 || posI==taillePlateau-1 || posJ==taillePlateau-1)
             return heuristic(plateau, posI, posJ, player);
