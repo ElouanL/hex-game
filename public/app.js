@@ -23,7 +23,7 @@ var plateauToCaseTable = function(){
 
 
 var ColorEnum = {
-    RED : ,
+    RED : 0,
     GREEN : 1,
     NONE : 2
 };
