@@ -2,7 +2,6 @@
  * Created by Elouan on 28/02/2015.
  */
 app.controller('MainController', function($scope){
-
     $scope.caseTable = [
         {
             ligne:1,
