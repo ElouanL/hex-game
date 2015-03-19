@@ -48,6 +48,21 @@ app.controller('MainController', function($scope){
             ligne:3,
             colonne:3,
             couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:1,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:2,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:3,
+            couleur:"white"
         }
     ];
 
@@ -58,6 +73,9 @@ app.controller('MainController', function($scope){
     };
     $scope.ouou = 'Comment ca va ?';
     $scope.couleur = 'green';
+
+
+
 
 });
 app.controller('PlateauController', function($scope){

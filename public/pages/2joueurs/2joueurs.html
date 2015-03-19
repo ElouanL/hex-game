@@ -1,7 +1,21 @@
-<span ng-repeat="(i, case) in caseTable">
-    <span ng-if="case.ligne>caseTable[i-1].ligne">
-        <br>
-        <svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>
+<div class="row">
+    <div class="col-md-offset-3 col-md-3" style="background-color:{{joueur}};">
+        <p style="color:#ffff00" ng-if="joueur=='blue'">Joueur 1</p>
+        <p style="color:blue" ng-if="joueur=='yellow'">Joueur 2</p>
+    </div>
+</div>
+
+<div>
+    <svg style="background-color: #ffff00" width="50" height="50"></svg>
+    <svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>
+    <span ng-repeat="(i, case) in caseTable">
+        <span ng-if="case.ligne>caseTable[i-1].ligne">
+            <svg style="background-color: #ffff00" width="50" height="50"></svg>
+            <br>
+            <svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>
+            <svg style="background-color: #ffff00" width="50" height="50"></svg>
+        </span>
+        <plateau></plateau>
     </span>
-    <plateau></plateau>
-</span>
+    <svg style="background-color: #ffff00" width="50" height="50"></svg>
+</div>

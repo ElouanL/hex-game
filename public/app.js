@@ -2,8 +2,28 @@
 
 var app = angular.module('Hex', ['ngRoute']);
 
+var caseTableToPlateau = function(){
+    var plateau = [];
+    var ligne = [];
+    $scope.caseTable().forEach(function(c, i){
+        ligne.push(c.couleur);
+        if(c.ligne>$scope.caseTable[i-1]){
+            plateau.push(ligne);
+            ligne = [];
+        }
+    });
+
+    return plateau
+};
+
+var plateauToCaseTable = function(){
+
+};
+
+
+
 var ColorEnum = {
-    RED : 0,
+    RED : ,
     GREEN : 1,
     NONE : 2
 };
@@ -11,6 +31,7 @@ var ColorEnum = {
 var infinite = 99999;
 var taillePlateau = 4;
 var plateau = new Array();
+
 
 function gagnant(mPlateau){
     var i, j, couleur;
