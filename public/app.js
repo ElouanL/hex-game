@@ -108,7 +108,7 @@ function listeMin(listeCasesValeur) {
 
 function alphabeta(plateau, posI, posJ, depth, alpha, beta, player) {
     if (depth = 0 || posI==0 || posJ==0 || posI==taillePlateau-1 || posJ==taillePlateau-1)
-        return heuristic(plateau, posI, posJ);
+        return heuristic(plateau, posI, posJ, player);
 
     if (player == ColorEnum.GREEN) { //Joueur humain
         var v = -infinite;
@@ -143,7 +143,8 @@ function alphabeta(plateau, posI, posJ, depth, alpha, beta, player) {
     }
 }
 
-function heuristic(plateau, posI, posJ) {
+function heuristic(plateau, posI, posJ, player) {
+    plateau[i][j]=player;
     var victorious = gagnant(plateau);
     
     if(victorious == ColorEnum.GREEN)
@@ -156,6 +157,13 @@ function heuristic(plateau, posI, posJ) {
         return 3000;
     if(victorious == ColorEnum.RED && (posJ==0 || posJ==taillePlateau-1))
         return -3000;
+
+    if(plateau[posI, posJ] == ColorEnum.GREEN)
+        return 3000;
+    if(plateau[posI, posJ] == ColorEnum.RED)
+        return -3000;
+    if(plateau[posI, posJ] == ColorEnum.NONE)
+        return -1500;
 
     return 0;
 }
