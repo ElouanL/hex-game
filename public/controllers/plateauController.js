@@ -52,21 +52,6 @@ app.controller('MainController', function($scope){
             ligne:3,
             colonne:3,
             couleur:"white"
-        },
-        {
-            ligne:4,
-            colonne:1,
-            couleur:"white"
-        },
-        {
-            ligne:4,
-            colonne:2,
-            couleur:"white"
-        },
-        {
-            ligne:4,
-            colonne:3,
-            couleur:"white"
         }
     ];
 
@@ -115,7 +100,9 @@ app.controller('MainController', function($scope){
         NONE : 'white'
     };
 
-    function gagnant(mPlateau){
+    $scope.gagnant = function (){
+        var mPlateau = $scope.caseTableToPlateau();
+
         var i, j, couleur;
         i=0;
         j=0;
@@ -138,7 +125,7 @@ app.controller('MainController', function($scope){
         }
 
         return ColorEnum.NONE;
-    }
+    };
 
     function parcourCases(i, j, couleur, plateauCopie) {
         if(i>=0 && i<taillePlateau && j>=0 && j<taillePlateau) {
