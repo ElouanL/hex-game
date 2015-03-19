@@ -3,13 +3,13 @@
  */
 
 app.controller('2joueursController', function($scope){
-    $scope.test = "bonjour !";
     $scope.joueur = "blue";
 
 
     var infinite = 99999;
-    var taillePlateau = 4;
+    var taillePlateau = 3;
     var plateau = new Array();
+
 
     $scope.caseTable = [
         {
@@ -61,7 +61,6 @@ app.controller('2joueursController', function($scope){
 
     $scope.width = function(ligne){
         var multi = 20+(ligne*2);
-
         return ligne * multi;
     };
 
@@ -75,6 +74,7 @@ app.controller('2joueursController', function($scope){
             }
             ligne.push(c.couleur);
         });
+        plateau.push(ligne);
         return plateau
     };
 
@@ -145,18 +145,18 @@ app.controller('2joueursController', function($scope){
                 }
             }
         }
-
         return false;
     }
-
 
     $scope.jouer = function(i){
         if ($scope.caseTable[i].couleur == "white"){
             $scope.caseTable[i].couleur = $scope.joueur;
             $scope.joueur = ($scope.joueur == "blue") ? "yellow" : "blue";
-            alert(gagnant());
+            var gagn = gagnant();
+            if(gagn!='white'){
+                alert('les ' + gagn + ' gagne')
+            };
         }
     };
-
 
 });
