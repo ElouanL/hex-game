@@ -8,7 +8,7 @@ app.controller('2joueursController', function($scope){
 
 
     var infinite = 99999;
-    var taillePlateau = 4;
+    var taillePlateau = 3;
     var plateau = new Array();
 
     $scope.caseTable = [
@@ -75,6 +75,7 @@ app.controller('2joueursController', function($scope){
             }
             ligne.push(c.couleur);
         });
+        plateau.push(ligne);
         return plateau
     };
 
