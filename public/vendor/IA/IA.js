@@ -196,3 +196,10 @@ function min(x, y) {
     else
         return y;
 }
+
+function coordonneeToCaseTable(ligne, colonne){
+    console.log(ligne + '-' + colonne)
+    var index = ligne*taillePlateau;
+    index += colonne;
+    return index;
+}

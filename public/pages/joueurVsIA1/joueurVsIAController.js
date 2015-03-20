@@ -127,7 +127,11 @@ app.controller('JoueurVsIA1Controller', function($scope){
             $scope.caseTable[i].couleur = $scope.joueur;
 
             var plateau = $scope.caseTableToPlateau();
-            plateau = jouerIA(plateau);
+
+            var coordonnee = jouerIA(plateau);
+            var index = coordonneeToCaseTable(coordonnee.ligne, coordonnee.colonne);
+            console.log(index);
+            $scope.caseTable[index].couleur = 'yellow';
             var gagn = gagnant(plateau);
             if(gagn!='white'){
                 alert('les ' + gagn + ' gagne')
