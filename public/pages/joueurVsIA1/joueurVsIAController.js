@@ -97,8 +97,6 @@ app.controller('JoueurVsIA1Controller', function($scope){
     };
 
     var gagnant = function (mPlateau){
-        //var mPlateau = $scope.caseTableToPlateau();
-
         var i, j, couleur;
         i=0;
         j=0;
@@ -165,9 +163,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
         for(var i=0 ; i<taillePlateau ; i++) {
             for(var j=0 ; j<taillePlateau ; j++) {
                 if (mPlateau[i][j] == ColorEnum.NONE) {
-                    //console.log("a plateau : " + mPlateau);
                     var valeur = alphabeta(plateauCopie, i, j, 2, -infinite, infinite, couleur);
-                    //console.log("b plateau : " + mPlateau);
                     listeCasesValeur.push({ligne : i, colonne : j, valeur : valeur});
                 }
             }
@@ -225,7 +221,6 @@ app.controller('JoueurVsIA1Controller', function($scope){
                     if ((k != l) || k == 0 || l == 0) {
                         v = min(v, alphabeta(plateau, posI+k, posJ+l, depth - 1, alpha, beta, player));
                         beta = min(beta, v);
-                        console.log(depth);
                         if (beta <= alpha)
                             return v;
                     }
@@ -321,7 +316,6 @@ app.controller('JoueurVsIA1Controller', function($scope){
             $scope.caseTable[i].couleur = $scope.joueur;
 
             var unPlateau = $scope.caseTableToPlateau();
-            console.log(unPlateau);
 
             var coordonnee = jouerIA($scope.caseTableToPlateau());
             var index = coordonneeToCaseTable(coordonnee.ligne, coordonnee.colonne);
