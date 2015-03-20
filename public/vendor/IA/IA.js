@@ -1,6 +1,9 @@
 /**
  * Created by Elouan on 20/03/2015.
  */
+/*
+
+
 var infinite = 99999;
 var taillePlateau = 4;
 
@@ -193,3 +196,5 @@ function coordonneeToCaseTable(ligne, colonne){
     index += colonne;
     return index;
 }
+
+*/
