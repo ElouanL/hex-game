@@ -6,9 +6,7 @@ app.controller('2joueursController', function($scope){
     $scope.joueur = "blue";
 
 
-    var infinite = 99999;
-    var taillePlateau = 3;
-    var plateau = new Array();
+    var taillePlateau = 4;
 
 
     $scope.caseTable = [
@@ -28,6 +26,11 @@ app.controller('2joueursController', function($scope){
             couleur:"white"
         },
         {
+            ligne:1,
+            colonne:4,
+            couleur:"white"
+        },
+        {
             ligne:2,
             colonne:1,
             couleur:"white"
@@ -43,6 +46,11 @@ app.controller('2joueursController', function($scope){
             couleur:"white"
         },
         {
+            ligne:2,
+            colonne:4,
+            couleur:"white"
+        },
+        {
             ligne:3,
             colonne:1,
             couleur:"white"
@@ -55,6 +63,31 @@ app.controller('2joueursController', function($scope){
         {
             ligne:3,
             colonne:3,
+            couleur:"white"
+        },
+        {
+            ligne:3,
+            colonne:4,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:1,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:2,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:3,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:4,
             couleur:"white"
         }
     ];
@@ -92,8 +125,8 @@ app.controller('2joueursController', function($scope){
     };
 
     var ColorEnum = {
-        RED : 'blue',
-        GREEN : 'yellow',
+        BLUE : 'blue',
+        YELLOW : 'yellow',
         NONE : 'white'
     };
 
@@ -103,21 +136,22 @@ app.controller('2joueursController', function($scope){
         var i, j, couleur;
         i=0;
         j=0;
-        couleur = ColorEnum.GREEN;
+        couleur = ColorEnum.YELLOW;
 
-        var plateauCopie;// = new Array();
-        plateauCopie = mPlateau;
+        var plateauCopie = mPlateau.slice();
         for(i=0 ; i<taillePlateau ; i++) {
             if (parcourCases(i, j, couleur, plateauCopie)) {
-                return ColorEnum.GREEN;
+                return ColorEnum.YELLOW;
             }
         }
 
-        plateauCopie = mPlateau;
-        couleur = ColorEnum.RED;
+        i=0;
+        j=0;
+        plateauCopie = mPlateau.slice();
+        couleur = ColorEnum.BLUE;
         for(j=0 ; j<taillePlateau ; j++) {
             if (parcourCases(i, j, couleur, plateauCopie)) {
-                return ColorEnum.RED;
+                return ColorEnum.BLUE;
             }
         }
 
@@ -126,17 +160,18 @@ app.controller('2joueursController', function($scope){
 
     function parcourCases(i, j, couleur, plateauCopie) {
         if(i>=0 && i<taillePlateau && j>=0 && j<taillePlateau) {
-            if((plateauCopie[i][j] == ColorEnum.GREEN && j==taillePlateau-1) ||
-                (plateauCopie[i][j] == ColorEnum.RED && i==taillePlateau-1))
+            if((plateauCopie[i][j] == ColorEnum.YELLOW && couleur == ColorEnum.YELLOW && j==taillePlateau-1) ||
+                (plateauCopie[i][j] == ColorEnum.BLUE && couleur == ColorEnum.BLUE && i==taillePlateau-1))
             {
                 return true;
             }else{
                 if(couleur == plateauCopie[i][j]){
-                    plateauCopie[i][j] = ColorEnum.NONE;
+                    var newPlateau = plateauCopie.slice();
+                    newPlateau[i][j] = ColorEnum.NONE;
                     for(var k=-1; k<=1; k++){
                         for(var l=-1; l<=1; l++){
                             if((k!=l) || i==0 || j==0){
-                                if(parcourCases(i+k, j+l, couleur)){
+                                if(parcourCases(i+k, j+l, couleur, newPlateau)){
                                     return true;
                                 }
                             }

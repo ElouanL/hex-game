@@ -89,10 +89,10 @@ app.controller('MainController', function($scope){
         });
     };
 
-    $scope.jouerIA = function(){
+    /*$scope.jouerIA = function(){
         plateau = $scope.caseTableToPlateau();
         $scope.plateauToCaseTable(playIA());
-    };
+    };*/
 
     var ColorEnum = {
         RED : 'blue',
