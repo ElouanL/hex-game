@@ -104,7 +104,8 @@ app.controller('JoueurVsIA1Controller', function($scope){
         j=0;
         couleur = ColorEnum.YELLOW;
 
-        var plateauCopie = mPlateau.slice();
+        var plateauCopie = [];
+        angular.copy(mPlateau, plateauCopie);
         for(i=0 ; i<taillePlateau ; i++) {
             if (parcourCases(i, j, couleur, plateauCopie)) {
                 return ColorEnum.YELLOW;
@@ -113,7 +114,8 @@ app.controller('JoueurVsIA1Controller', function($scope){
 
         i=0;
         j=0;
-        plateauCopie = mPlateau.slice();
+        plateauCopie = [];
+        angular.copy(mPlateau, plateauCopie);
         couleur = ColorEnum.BLUE;
         for(j=0 ; j<taillePlateau ; j++) {
             if (parcourCases(i, j, couleur, plateauCopie)) {
@@ -132,7 +134,8 @@ app.controller('JoueurVsIA1Controller', function($scope){
                 return true;
             }else{
                 if(couleur == plateauCopie[i][j]){
-                    var newPlateau = plateauCopie.slice();
+                    var newPlateau = [];
+                    angular.copy(plateauCopie, newPlateau);
                     newPlateau[i][j] = ColorEnum.NONE;
                     for(var k=-1; k<=1; k++){
                         for(var l=-1; l<=1; l++){
@@ -152,9 +155,8 @@ app.controller('JoueurVsIA1Controller', function($scope){
 
 
     var jouerIA = function (mPlateau) {
-        //var mPlateau = $scope.caseTableToPlateau();
-        var plateauCopie = mPlateau.slice();
-        console.log("plateau : " + mPlateau);
+        var plateauCopie = [];
+        angular.copy(mPlateau, plateauCopie);
 
         var couleur = ColorEnum.YELLOW;
 
@@ -235,7 +237,8 @@ app.controller('JoueurVsIA1Controller', function($scope){
     }
 
     function heuristic(plateau, posI, posJ, player) {
-        var plateauC = plateau.slice();
+        var plateauC = [];
+        angular.copy(plateau, plateauC);
         plateauC[posI][posJ]=player;
         var victorious = gagnant(plateauC);
 
