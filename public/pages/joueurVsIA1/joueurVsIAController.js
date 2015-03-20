@@ -102,7 +102,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
         var plateau = [];
         var ligne = [];
 
-        //console.log($scope.caseTable);
+        console.log($scope.caseTable);
         $scope.caseTable.forEach(function(c, i){
             if($scope.caseTable[i-1] && c.ligne > $scope.caseTable[i-1].ligne){
                 plateau.push(ligne);
