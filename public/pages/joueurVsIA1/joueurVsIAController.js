@@ -202,7 +202,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
         if (depth <= 0 || posI==0 || posJ==0 || posI==taillePlateau-1 || posJ==taillePlateau-1)
             return heuristic(plateau, posI, posJ, player);
 
-        if (player == ColorEnum.YELLOW) { //Joueur humain
+        if (player == ColorEnum.BLUE) { //Joueur humain
             var v = -infinite;
 
             for(var k=-1; k<=1; k++) {
@@ -243,20 +243,20 @@ app.controller('JoueurVsIA1Controller', function($scope){
         var victorious = gagnant(plateauC);
 
         if(victorious == ColorEnum.YELLOW)
-            return 3000;
-        if(victorious == ColorEnum.BLUE)
             return -3000;
+        if(victorious == ColorEnum.BLUE)
+            return 3000;
 
 
         if(victorious == ColorEnum.YELLOW && (posI==0 || posI==taillePlateau-1))
-            return 3000;
-        if(victorious == ColorEnum.BLUE && (posJ==0 || posJ==taillePlateau-1))
             return -3000;
+        if(victorious == ColorEnum.BLUE && (posJ==0 || posJ==taillePlateau-1))
+            return 3000;
 
         if(plateau[posI][posJ] == ColorEnum.YELLOW)
-            return 3000;
-        if(plateau[posI][posJ] == ColorEnum.BLUE)
             return -3000;
+        if(plateau[posI][posJ] == ColorEnum.BLUE)
+            return 3000;
         if(plateau[posI][posJ] == ColorEnum.NONE)
             return -1500;
 
