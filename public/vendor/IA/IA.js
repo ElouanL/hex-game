@@ -111,7 +111,6 @@ function listeMin(listeCasesValeur) {
 }
 
 function alphabeta(plateau, posI, posJ, depth, alpha, beta, player) {
-    console.log(depth);
     if (depth <= 0 || posI==0 || posJ==0 || posI==taillePlateau-1 || posJ==taillePlateau-1)
         return heuristic(plateau, posI, posJ, player);
 
@@ -190,7 +189,6 @@ function min(x, y) {
 }
 
 function coordonneeToCaseTable(ligne, colonne){
-    console.log(ligne + '-' + colonne)
     var index = ligne*taillePlateau;
     index += colonne;
     return index;

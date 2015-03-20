@@ -96,8 +96,6 @@ app.controller('JoueurVsIA1Controller', function($scope){
     $scope.caseTableToPlateau = function(){
         var plateau = [];
         var ligne = [];
-
-        console.log($scope.caseTable);
         $scope.caseTable.forEach(function(c, i){
             if($scope.caseTable[i-1] && c.ligne > $scope.caseTable[i-1].ligne){
                 plateau.push(ligne);
@@ -106,7 +104,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
             ligne.push(c.couleur);
         });
         plateau.push(ligne);
-        return plateau
+        return plateau;
     };
 
     $scope.plateauToCaseTable = function(table){
@@ -125,6 +123,9 @@ app.controller('JoueurVsIA1Controller', function($scope){
     $scope.jouer = function(i){
         if ($scope.caseTable[i].couleur == "white"){
             $scope.caseTable[i].couleur = $scope.joueur;
+
+            var unPlateau = $scope.caseTableToPlateau();
+            console.log(unPlateau);
 
             var coordonnee = jouerIA($scope.caseTableToPlateau());
             var index = coordonneeToCaseTable(coordonnee.ligne, coordonnee.colonne);
