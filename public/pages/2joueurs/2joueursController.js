@@ -6,9 +6,7 @@ app.controller('2joueursController', function($scope){
     $scope.joueur = "blue";
 
 
-    var infinite = 99999;
-    var taillePlateau = 3;
-    var plateau = new Array();
+    var taillePlateau = 4;
 
 
     $scope.caseTable = [
@@ -28,6 +26,11 @@ app.controller('2joueursController', function($scope){
             couleur:"white"
         },
         {
+            ligne:1,
+            colonne:4,
+            couleur:"white"
+        },
+        {
             ligne:2,
             colonne:1,
             couleur:"white"
@@ -43,6 +46,11 @@ app.controller('2joueursController', function($scope){
             couleur:"white"
         },
         {
+            ligne:2,
+            colonne:4,
+            couleur:"white"
+        },
+        {
             ligne:3,
             colonne:1,
             couleur:"white"
@@ -55,6 +63,31 @@ app.controller('2joueursController', function($scope){
         {
             ligne:3,
             colonne:3,
+            couleur:"white"
+        },
+        {
+            ligne:3,
+            colonne:4,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:1,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:2,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:3,
+            couleur:"white"
+        },
+        {
+            ligne:4,
+            colonne:4,
             couleur:"white"
         }
     ];
