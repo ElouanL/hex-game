@@ -97,14 +97,13 @@ app.controller('JoueurVsIA1Controller', function($scope){
     };
 
     var gagnant = function (mPlateau){
-        //var mPlateau = $scope.caseTableToPlateau();
-
         var i, j, couleur;
         i=0;
         j=0;
         couleur = ColorEnum.YELLOW;
 
-        var plateauCopie = mPlateau.slice();
+        var plateauCopie = [];
+        angular.copy(mPlateau, plateauCopie);
         for(i=0 ; i<taillePlateau ; i++) {
             if (parcourCases(i, j, couleur, plateauCopie)) {
                 return ColorEnum.YELLOW;
@@ -113,7 +112,8 @@ app.controller('JoueurVsIA1Controller', function($scope){
 
         i=0;
         j=0;
-        plateauCopie = mPlateau.slice();
+        plateauCopie = [];
+        angular.copy(mPlateau, plateauCopie);
         couleur = ColorEnum.BLUE;
         for(j=0 ; j<taillePlateau ; j++) {
             if (parcourCases(i, j, couleur, plateauCopie)) {
@@ -132,7 +132,8 @@ app.controller('JoueurVsIA1Controller', function($scope){
                 return true;
             }else{
                 if(couleur == plateauCopie[i][j]){
-                    var newPlateau = plateauCopie.slice();
+                    var newPlateau = [];
+                    angular.copy(plateauCopie, newPlateau);
                     newPlateau[i][j] = ColorEnum.NONE;
                     for(var k=-1; k<=1; k++){
                         for(var l=-1; l<=1; l++){
@@ -152,9 +153,8 @@ app.controller('JoueurVsIA1Controller', function($scope){
 
 
     var jouerIA = function (mPlateau) {
-        //var mPlateau = $scope.caseTableToPlateau();
-        var plateauCopie = mPlateau.slice();
-        console.log("plateau : " + mPlateau);
+        var plateauCopie = [];
+        angular.copy(mPlateau, plateauCopie);
 
         var couleur = ColorEnum.YELLOW;
 
@@ -163,9 +163,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
         for(var i=0 ; i<taillePlateau ; i++) {
             for(var j=0 ; j<taillePlateau ; j++) {
                 if (mPlateau[i][j] == ColorEnum.NONE) {
-                    //console.log("a plateau : " + mPlateau);
                     var valeur = alphabeta(plateauCopie, i, j, 2, -infinite, infinite, couleur);
-                    //console.log("b plateau : " + mPlateau);
                     listeCasesValeur.push({ligne : i, colonne : j, valeur : valeur});
                 }
             }
@@ -200,7 +198,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
         if (depth <= 0 || posI==0 || posJ==0 || posI==taillePlateau-1 || posJ==taillePlateau-1)
             return heuristic(plateau, posI, posJ, player);
 
-        if (player == ColorEnum.YELLOW) { //Joueur humain
+        if (player == ColorEnum.BLUE) { //Joueur humain
             var v = -infinite;
 
             for(var k=-1; k<=1; k++) {
@@ -223,7 +221,6 @@ app.controller('JoueurVsIA1Controller', function($scope){
                     if ((k != l) || k == 0 || l == 0) {
                         v = min(v, alphabeta(plateau, posI+k, posJ+l, depth - 1, alpha, beta, player));
                         beta = min(beta, v);
-                        console.log(depth);
                         if (beta <= alpha)
                             return v;
                     }
@@ -235,25 +232,26 @@ app.controller('JoueurVsIA1Controller', function($scope){
     }
 
     function heuristic(plateau, posI, posJ, player) {
-        var plateauC = plateau.slice();
+        var plateauC = [];
+        angular.copy(plateau, plateauC);
         plateauC[posI][posJ]=player;
         var victorious = gagnant(plateauC);
 
         if(victorious == ColorEnum.YELLOW)
-            return 3000;
-        if(victorious == ColorEnum.BLUE)
             return -3000;
+        if(victorious == ColorEnum.BLUE)
+            return 3000;
 
 
         if(victorious == ColorEnum.YELLOW && (posI==0 || posI==taillePlateau-1))
-            return 3000;
-        if(victorious == ColorEnum.BLUE && (posJ==0 || posJ==taillePlateau-1))
             return -3000;
+        if(victorious == ColorEnum.BLUE && (posJ==0 || posJ==taillePlateau-1))
+            return 3000;
 
         if(plateau[posI][posJ] == ColorEnum.YELLOW)
-            return 3000;
-        if(plateau[posI][posJ] == ColorEnum.BLUE)
             return -3000;
+        if(plateau[posI][posJ] == ColorEnum.BLUE)
+            return 3000;
         if(plateau[posI][posJ] == ColorEnum.NONE)
             return -1500;
 
@@ -318,7 +316,6 @@ app.controller('JoueurVsIA1Controller', function($scope){
             $scope.caseTable[i].couleur = $scope.joueur;
 
             var unPlateau = $scope.caseTableToPlateau();
-            console.log(unPlateau);
 
             var coordonnee = jouerIA($scope.caseTableToPlateau());
             var index = coordonneeToCaseTable(coordonnee.ligne, coordonnee.colonne);
