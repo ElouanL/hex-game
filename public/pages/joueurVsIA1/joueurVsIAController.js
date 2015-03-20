@@ -126,15 +126,13 @@ app.controller('JoueurVsIA1Controller', function($scope){
         if ($scope.caseTable[i].couleur == "white"){
             $scope.caseTable[i].couleur = $scope.joueur;
 
-            var plateau = $scope.caseTableToPlateau();
-
-            var coordonnee = jouerIA(plateau);
+            var coordonnee = jouerIA($scope.caseTableToPlateau());
             var index = coordonneeToCaseTable(coordonnee.ligne, coordonnee.colonne);
             $scope.caseTable[index].couleur = 'yellow';
-            var gagn = gagnant(plateau);
+            var gagn = gagnant($scope.caseTableToPlateau());
             if(gagn!='white'){
                 alert('les ' + gagn + ' gagne')
-            };
+            }
         }
     };
 });
