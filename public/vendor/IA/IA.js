@@ -85,15 +85,7 @@ var jouerIA = function (mPlateau) {
         }
     }
 
-    var caseJeu = listeMin(listeCasesValeur);
-    console.log(caseJeu);
-    console.log("plateau : " + mPlateau);
-    console.log("copie : " + plateauCopie);
-    mPlateau[caseJeu.ligne][caseJeu.colonne] = couleur;
-
-    console.log("plateau : " + mPlateau);
-
-    return mPlateau;
+    return listeMin(listeCasesValeur);
 };
 
 function listeMin(listeCasesValeur) {
