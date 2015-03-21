@@ -2,89 +2,105 @@
  * Created by Elouan on 17/03/2015.
  */
 app.controller('JoueurVsIA2Controller', function($scope){
-    $scope.joueur = "blue";
+    $scope.joueur = "yellow";
     $scope.tailleCaseTable  = 4;
 
     $scope.caseTable = [
         {
             ligne:1,
             colonne:1,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:1,
             colonne:2,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:1,
             colonne:3,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:1,
             colonne:4,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:2,
             colonne:1,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:2,
             colonne:2,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:2,
             colonne:3,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:2,
             colonne:4,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:3,
             colonne:1,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:3,
             colonne:2,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:3,
             colonne:3,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:3,
             colonne:4,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:4,
             colonne:1,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:4,
             colonne:2,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:4,
             colonne:3,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         },
         {
             ligne:4,
             colonne:4,
-            couleur:"white"
+            couleur:"white",
+            tableScore:1
         }
     ];
 
@@ -193,25 +209,267 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
         $scope.caseTable.forEach(function(laCase){
             if(laCase.colonne<milieux){
-                laCase.tableScore = laCase.colonne;
+                laCase.tableScore += laCase.colonne;
             }else{
-                laCase.tableScore = $scope.tailleCaseTable-laCase.colonne;
+                laCase.tableScore += $scope.tailleCaseTable-laCase.colonne;
+            }
+            if(laCase.ligne<milieux){
+                laCase.tableScore += laCase.ligne;
+            }else{
+                laCase.tableScore += $scope.tailleCaseTable-laCase.ligne;
             }
         });
     }
 
-    function meilleurScoreRandom(){
+    //Retourne l'indice de la case autour d'un cercle en partant de 0 : en haut à gauche
+    function tourDuneCase(indice, numTour){
+        switch(numTour){
+            case 0:
+                return indice - $scope.tailleCaseTable;
+            case 1:
+                if($scope.caseTable[indice].colonne!=$scope.tailleCaseTable){
+                    return indice - $scope.tailleCaseTable + 1;
+                }else{
+                    return -1;
+                }
+                //return indice - $scope.tailleCaseTable + 1;
+            case 2:
+                if($scope.caseTable[indice].colonne!=$scope.tailleCaseTable){
+                    return indice + 1;
+                }else{
+                    return -1;
+                }
+                //return indice + 1;
+            case 3:
+                return indice + $scope.tailleCaseTable;
+            case 4:
+                if($scope.caseTable[indice].colonne!=1){
+                    return indice + $scope.tailleCaseTable - 1;
+                }else{
+                    return -1;
+                }
+            case 5:
+                if($scope.caseTable[indice].colonne!=1){
+                    return indice - 1;
+                }else{
+                    return -1;
+                }
+            default: return -1;
+        }
+
+    }
+
+    function premierCercle(){
+        $scope.caseTable.forEach(function(laCase, i){
+            if(laCase.couleur=='white'){
+                var iCase = tourDuneCase(i, 0);
+                if($scope.caseTable[iCase]){
+                    switch ($scope.caseTable[iCase].couleur){
+                        case 'white':
+                            break;
+                        case 'yellow':
+                            break;
+                        case 'blue':
+                            laCase.tableScore += 10;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                iCase = tourDuneCase(i, 1);
+                if($scope.caseTable[iCase]){
+                    switch ($scope.caseTable[iCase].couleur){
+                        case 'white':
+
+                            break;
+                        case 'yellow':
+                            break;
+                        case 'blue':
+                            laCase.tableScore += 10;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                iCase = tourDuneCase(i, 2);
+                if($scope.caseTable[iCase]){
+                    switch ($scope.caseTable[iCase].couleur){
+                        case 'white':
+                            break;
+                        case 'yellow':
+                            break;
+                        case 'blue':
+                            laCase.tableScore += 5;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                iCase = tourDuneCase(i, 3);
+                if($scope.caseTable[iCase]){
+                    switch ($scope.caseTable[iCase].couleur){
+                        case 'white':
+
+                            break;
+                        case 'yellow':
+                            break;
+                        case 'blue':
+                            laCase.tableScore += 10;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                iCase = tourDuneCase(i, 4);
+                if($scope.caseTable[iCase]){
+                    switch ($scope.caseTable[iCase].couleur){
+                        case 'white':
+
+                            break;
+                        case 'yellow':
+                            break;
+                        case 'blue':
+                            laCase.tableScore += 10;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                iCase = tourDuneCase(i, 5);
+                if($scope.caseTable[iCase]){
+                    switch ($scope.caseTable[iCase].couleur){
+                        case 'white':
+
+                            break;
+                        case 'yellow':
+                            break;
+                        case 'blue':
+                            laCase.tableScore += 5;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                /*
+                for(var iTour=0;iTour<5;++iTour){
+                    var iCase = tourDuneCase(i, iTour);
+                    console.log(iCase);
+                    switch(iTour){
+                        case 0:
+                            if($scope.caseTable[iCase]){
+                                switch (laCase.couleur){
+                                    case 'white':
+                                        break;
+                                    case 'yellow':
+                                        break;
+                                    case 'blue':
+                                        laCase.tableScore += 10;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            break;
+                        case 1:
+                            if($scope.caseTable[iCase]){
+                                switch (laCase.couleur){
+                                    case 'white':
+
+                                        break;
+                                    case 'yellow':
+                                        break;
+                                    case 'blue':
+                                        laCase.tableScore += 10;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            break;
+                        case 2:
+                            if($scope.caseTable[iCase]){
+                                switch (laCase.couleur){
+                                    case 'white':
+
+                                        break;
+                                    case 'yellow':
+                                        break;
+                                    case 'blue':
+                                        laCase.tableScore += 5;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            break;
+                        case 3:
+                            if($scope.caseTable[iCase]){
+                                switch (laCase.couleur){
+                                    case 'white':
+
+                                        break;
+                                    case 'yellow':
+                                        break;
+                                    case 'blue':
+                                        laCase.tableScore += 10;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            break;
+                        case 4:
+                            if($scope.caseTable[iCase]){
+                                switch (laCase.couleur){
+                                    case 'white':
+
+                                        break;
+                                    case 'yellow':
+                                        break;
+                                    case 'blue':
+                                        laCase.tableScore += 10;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            break;
+                        case 5:
+                            if($scope.caseTable[iCase]){
+                                switch (laCase.couleur){
+                                    case 'white':
+
+                                        break;
+                                    case 'yellow':
+                                        break;
+                                    case 'blue':
+                                        laCase.tableScore += 5;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }*/
+            }
+        });
+    }
+
+    function meilleurScore(){
         var indiceMeilleurScore = 0;
         var meilleurScore = 0;
 
         $scope.caseTable.forEach(function(laCase,i){
-            if(meilleurScore < laCase.tableScore && laCase.couleur == 'white'){
+            if(meilleurScore <= laCase.tableScore && laCase.couleur == 'white'){
                 indiceMeilleurScore = i;
                 meilleurScore = laCase.tableScore;
             }
         });
 
-        $scope.caseTable[indiceMeilleurScore].couleur = 'yellow';
+        $scope.caseTable[indiceMeilleurScore].couleur = 'blue';
     }
 
     function jouerIA2(){
@@ -222,9 +480,22 @@ app.controller('JoueurVsIA2Controller', function($scope){
         if ($scope.caseTable[i].couleur == "white"){
             $scope.caseTable[i].couleur = $scope.joueur;
 
+            var g = gagnant($scope.caseTableToPlateau());
+            if(g!='white'){
+                alert('les ' + g + ' gagne')
+            }
+
             //jouerIA2();
-            scoreCaseTable();
-            meilleurScoreRandom();
+            //init tableScore
+            $scope.caseTable.forEach(function(laCase){
+                laCase.tableScore = 1;
+            });
+
+            //Scoring
+            //scoreCaseTable();
+            premierCercle();
+            meilleurScore();
+
 
             var gagn = gagnant($scope.caseTableToPlateau());
             if(gagn!='white'){
