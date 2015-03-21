@@ -268,6 +268,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
                         case 'white':
                             break;
                         case 'yellow':
+                            laCase.tableScore += 5;
                             break;
                         case 'blue':
                             laCase.tableScore += 10;
@@ -283,6 +284,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                             break;
                         case 'yellow':
+                            laCase.tableScore += 5;
                             break;
                         case 'blue':
                             laCase.tableScore += 10;
@@ -297,6 +299,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
                         case 'white':
                             break;
                         case 'yellow':
+                            laCase.tableScore += 10;
                             break;
                         case 'blue':
                             laCase.tableScore += 5;
@@ -312,6 +315,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                             break;
                         case 'yellow':
+                            laCase.tableScore += 5;
                             break;
                         case 'blue':
                             laCase.tableScore += 10;
@@ -327,6 +331,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                             break;
                         case 'yellow':
+                            laCase.tableScore += 5;
                             break;
                         case 'blue':
                             laCase.tableScore += 10;
@@ -342,6 +347,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                             break;
                         case 'yellow':
+                            laCase.tableScore += 10;
                             break;
                         case 'blue':
                             laCase.tableScore += 5;
@@ -492,7 +498,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
             });
 
             //Scoring
-            //scoreCaseTable();
+            scoreCaseTable();
             premierCercle();
             meilleurScore();
 
