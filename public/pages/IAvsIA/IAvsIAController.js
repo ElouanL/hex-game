@@ -249,30 +249,41 @@ app.controller('IAvsIAController', function($scope){
     }
 
     function heuristic(plateau, posI, posJ, player) {
-        var plateauC = [];
-        angular.copy(plateau, plateauC);
-        plateauC[posI][posJ]=player;
-        var victorious = gagnant(plateauC);
-
-        if(victorious == ColorEnum.YELLOW)
+        if(plateau[posI][posJ] == ColorEnum.YELLOW) {
             return -6000;
-        if(victorious == ColorEnum.BLUE)
+        } else if(plateau[posI][posJ] == ColorEnum.BLUE) {
             return 6000;
+        } else {
+            var plateauC = [];
+            angular.copy(plateau, plateauC);
+            plateauC[posI][posJ]=player;
+            var victorious = gagnant(plateauC);
 
-
-        if(victorious == ColorEnum.YELLOW && (posI==0 || posI==taillePlateau-1))
-            return -3000;
-        if(victorious == ColorEnum.BLUE && (posJ==0 || posJ==taillePlateau-1))
-            return 3000;
-
-        if(plateau[posI][posJ] == ColorEnum.YELLOW)
-            return -3000;
-        if(plateau[posI][posJ] == ColorEnum.BLUE)
-            return 3000;
-        if(plateau[posI][posJ] == ColorEnum.NONE)
-            return -1500;
-
-        return 0;
+            if(victorious == ColorEnum.YELLOW) {
+                return -12000;
+            } else if(victorious == ColorEnum.BLUE) {
+                return 12000;
+            } else {
+                var score = 0;
+                for(var k=-1; k<=1; k++) {
+                    for (var l = -1; l <= 1; l++) {
+                        if (k != l && posI+k > 0 && posI+k < taillePlateau && posJ+l > 0 && posJ+l < taillePlateau) {
+                            if(plateau[posI+k][posJ+l] == ColorEnum.YELLOW) {
+                                score -= 1000;
+                            } else if(plateau[posI+k][posJ+l] == ColorEnum.BLUE) {
+                                score += 1000;
+                            }
+                        }
+                    }
+                }
+                if(player == ColorEnum.YELLOW && (posJ==0 || posJ==taillePlateau-1) && score<0){
+                    score -= 1000;
+                } else if(player == ColorEnum.BLUE && (posI==0 || posI==taillePlateau-1) && score>0){
+                    score += 1000;
+                }
+                return score;
+            }
+        }
     }
 
     function max(x, y) {
