@@ -163,7 +163,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
         for(var i=0 ; i<taillePlateau ; i++) {
             for(var j=0 ; j<taillePlateau ; j++) {
                 if (mPlateau[i][j] == ColorEnum.NONE) {
-                    var valeur = alphabeta(plateauCopie, i, j, 2, -infinite, infinite, couleur);
+                    var valeur = alphabeta(plateauCopie, i, j, 4, -infinite, infinite, couleur);
                     listeCasesValeur.push({ligne : i, colonne : j, valeur : valeur});
                 }
             }
@@ -185,11 +185,11 @@ app.controller('JoueurVsIA1Controller', function($scope){
                 listeMini.push(element);
             }
         });
-
-        if(listeMin.length = 1){
+        
+        if(listeMini.length == 1){
             return listeMini[0];
         } else {
-            var elemNum = Math.floor(Math.random() * listeMin.length);
+            var elemNum = Math.floor(Math.random() * listeMini.length);
             return listeMini[elemNum];
         }
     }
@@ -238,9 +238,9 @@ app.controller('JoueurVsIA1Controller', function($scope){
         var victorious = gagnant(plateauC);
 
         if(victorious == ColorEnum.YELLOW)
-            return -3000;
+            return -6000;
         if(victorious == ColorEnum.BLUE)
-            return 3000;
+            return 6000;
 
 
         if(victorious == ColorEnum.YELLOW && (posI==0 || posI==taillePlateau-1))
