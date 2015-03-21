@@ -153,7 +153,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
                     newPlateau[i][j] = ColorEnum.NONE;
                     for(var k=-1; k<=1; k++){
                         for(var l=-1; l<=1; l++){
-                            if(k!=l && (i==0 || j==0)){
+                            if(k!=l){
                                 if(parcourCases(i+k, j+l, couleur, newPlateau)){
                                     return true;
                                 }
