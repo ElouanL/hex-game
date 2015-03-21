@@ -203,7 +203,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
 
             for(var k=-1; k<=1; k++) {
                 for (var l = -1; l <= 1; l++) {
-                    if((k!=l) || k==0 || l==0){
+                    if(k!=l){
                         v = max(v, alphabeta(plateau, posI+k, posJ+l, depth - 1, alpha, beta, player));
                         alpha = max(alpha, v);
                         if (beta <= alpha)
@@ -218,7 +218,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
 
             for(var k=-1; k<=1; k++) {
                 for (var l = -1; l <= 1; l++) {
-                    if ((k != l) || k == 0 || l == 0) {
+                    if (k != l) {
                         v = min(v, alphabeta(plateau, posI+k, posJ+l, depth - 1, alpha, beta, player));
                         beta = min(beta, v);
                         if (beta <= alpha)
