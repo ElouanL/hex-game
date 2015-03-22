@@ -3,109 +3,36 @@
  */
 app.controller('JoueurVsIA2Controller', function($scope){
     $scope.joueur = "yellow";
-    $scope.tailleCaseTable  = 4;
-
-    $scope.caseTable = [
-        {
-            ligne:1,
-            colonne:1,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:1,
-            colonne:2,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:1,
-            colonne:3,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:1,
-            colonne:4,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:2,
-            colonne:1,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:2,
-            colonne:2,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:2,
-            colonne:3,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:2,
-            colonne:4,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:3,
-            colonne:1,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:3,
-            colonne:2,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:3,
-            colonne:3,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:3,
-            colonne:4,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:4,
-            colonne:1,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:4,
-            colonne:2,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:4,
-            colonne:3,
-            couleur:"white",
-            tableScore:1
-        },
-        {
-            ligne:4,
-            colonne:4,
-            couleur:"white",
-            tableScore:1
+    
+    $scope.tailleCaseTable = 9;
+    $scope.generateurTable = function(){
+        var nombreCase = Math.pow($scope.tailleCaseTable,2)-1;
+        $scope.caseTable = [];
+        var l = 1;
+        var c = 1;
+        //Pour toutes les cases du plateau
+        for(var i = 0; i<=nombreCase; i++){
+            var laCase = {
+                ligne : l,
+                colonne : c,
+                couleur : "white"
+            };
+            //Passer a la ligne
+            if(laCase.colonne==$scope.tailleCaseTable){
+                c=0;
+                l++;
+            }
+            $scope.caseTable.push(laCase);
+            c++;
         }
-    ];
+    };
+
+    $scope.caseTable.forEach(function(laCase){
+        laCase.tableScore = 1;
+    });
 
     var infinite = 99999;
-    var taillePlateau = 4;
+    var taillePlateau = $scope.tailleCaseTable;
 
     var ColorEnum = {
         BLUE : 'blue',
