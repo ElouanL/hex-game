@@ -212,7 +212,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
                 }
             }
 
-            return v;
+            return v/depth;
         } else { //Joueur IA
             var v = infinite;
 
