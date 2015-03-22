@@ -26,6 +26,11 @@ app.controller('MainController', function($scope){
         }
     };
 
+    //Calcul du décalage entre chaque ligne
+    $scope.width = function(ligne){
+        return ligne * 28;
+    };
+
 
 
     /*var infinite = 99999;

@@ -5,32 +5,13 @@ app.controller('JoueurVsIA2Controller', function($scope){
     //$scope.tailleCaseTable = 9;
     $scope.joueur = "yellow";
 
-    generateurTable = function(){
-        var nombreCase = Math.pow($scope.tailleCaseTable,2)-1;
-        $scope.caseTable = [];
-        var l = 1;
-        var c = 1;
-        //Pour toutes les cases du plateau
-        for(var i = 0; i<=nombreCase; i++){
-            var laCase = {
-                ligne : l,
-                colonne : c,
-                couleur : "white"
-            };
-            //Passer a la ligne
-            if(laCase.colonne==$scope.tailleCaseTable){
-                c=0;
-                l++;
-            }
-            $scope.caseTable.push(laCase);
-            c++;
-        }
-    };
+
 
     $scope.$watch('tailleCaseTable', function(){
 
 
-        generateurTable();
+        $scope.generateurTable();
+
 
         $scope.caseTable.forEach(function(laCase){
             laCase.tableScore = 1;
@@ -104,10 +85,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
             return index;
         }
 
-        $scope.width = function(ligne){
-            var multi = 20+(ligne*2);
-            return ligne * multi;
-        };
+
 
         $scope.caseTableToPlateau = function(){
             var plateau = [];
@@ -153,6 +131,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
             });
         }
 
+
         //Retourne l'indice de la case autour d'un cercle en partant de 0 : en haut à gauche
         function tourDuneCase(indice, numTour){
             switch(numTour){
@@ -197,13 +176,11 @@ app.controller('JoueurVsIA2Controller', function($scope){
                     var iCase = tourDuneCase(i, 0);
                     if($scope.caseTable[iCase]){
                         switch ($scope.caseTable[iCase].couleur){
-                            case 'white':
-                                break;
                             case 'yellow':
-                                laCase.tableScore += 5;
+                                laCase.tableScore -= 5;
                                 break;
                             case 'blue':
-                                laCase.tableScore += 10;
+                                laCase.tableScore += 15;
                                 break;
                             default:
                                 break;
@@ -216,7 +193,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                                 break;
                             case 'yellow':
-                                laCase.tableScore += 5;
+                                laCase.tableScore += 10;
                                 break;
                             case 'blue':
                                 laCase.tableScore += 10;
@@ -231,10 +208,10 @@ app.controller('JoueurVsIA2Controller', function($scope){
                             case 'white':
                                 break;
                             case 'yellow':
-                                laCase.tableScore += 10;
+                                laCase.tableScore += 15;
                                 break;
                             case 'blue':
-                                laCase.tableScore += 5;
+                                laCase.tableScore -= 5;
                                 break;
                             default:
                                 break;
@@ -247,10 +224,10 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                                 break;
                             case 'yellow':
-                                laCase.tableScore += 5;
+                                laCase.tableScore -= 5;
                                 break;
                             case 'blue':
-                                laCase.tableScore += 10;
+                                laCase.tableScore += 15;
                                 break;
                             default:
                                 break;
@@ -263,7 +240,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                                 break;
                             case 'yellow':
-                                laCase.tableScore += 5;
+                                laCase.tableScore += 10;
                                 break;
                             case 'blue':
                                 laCase.tableScore += 10;
@@ -279,10 +256,10 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                                 break;
                             case 'yellow':
-                                laCase.tableScore += 10;
+                                laCase.tableScore += 15;
                                 break;
                             case 'blue':
-                                laCase.tableScore += 5;
+                                laCase.tableScore -= 5;
                                 break;
                             default:
                                 break;

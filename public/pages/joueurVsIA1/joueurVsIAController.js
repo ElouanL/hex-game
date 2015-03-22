@@ -4,91 +4,10 @@
 app.controller('JoueurVsIA1Controller', function($scope){
     $scope.joueur = "blue";
 
-    $scope.caseTable = [
-        {
-            ligne:1,
-            colonne:1,
-            couleur:"white"
-        },
-        {
-            ligne:1,
-            colonne:2,
-            couleur:"white"
-        },
-        {
-            ligne:1,
-            colonne:3,
-            couleur:"white"
-        },
-        {
-            ligne:1,
-            colonne:4,
-            couleur:"white"
-        },
-        {
-            ligne:2,
-            colonne:1,
-            couleur:"white"
-        },
-        {
-            ligne:2,
-            colonne:2,
-            couleur:"white"
-        },
-        {
-            ligne:2,
-            colonne:3,
-            couleur:"white"
-        },
-        {
-            ligne:2,
-            colonne:4,
-            couleur:"white"
-        },
-        {
-            ligne:3,
-            colonne:1,
-            couleur:"white"
-        },
-        {
-            ligne:3,
-            colonne:2,
-            couleur:"white"
-        },
-        {
-            ligne:3,
-            colonne:3,
-            couleur:"white"
-        },
-        {
-            ligne:3,
-            colonne:4,
-            couleur:"white"
-        },
-        {
-            ligne:4,
-            colonne:1,
-            couleur:"white"
-        },
-        {
-            ligne:4,
-            colonne:2,
-            couleur:"white"
-        },
-        {
-            ligne:4,
-            colonne:3,
-            couleur:"white"
-        },
-        {
-            ligne:4,
-            colonne:4,
-            couleur:"white"
-        }
-    ];
+    $scope.generateurTable();
 
     var infinite = 99999;
-    var taillePlateau = 4;
+    var taillePlateau = 9;
 
     var ColorEnum = {
         BLUE : 'blue',
@@ -304,12 +223,6 @@ app.controller('JoueurVsIA1Controller', function($scope){
         index += colonne;
         return index;
     }
-
-
-    $scope.width = function(ligne){
-        var multi = 20+(ligne*2);
-        return ligne * multi;
-    };
 
     $scope.caseTableToPlateau = function(){
         var plateau = [];
