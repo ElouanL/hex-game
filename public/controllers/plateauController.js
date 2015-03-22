@@ -3,7 +3,32 @@
  */
 app.controller('MainController', function($scope){
 
-    var infinite = 99999;
+    $scope.tailleCaseTable = 9;
+    $scope.generateurTable = function(){
+        var nombreCase = Math.pow($scope.tailleCaseTable,2)-1;
+        $scope.caseTable = [];
+        var l = 1;
+        var c = 1;
+        //Pour toutes les cases du plateau
+        for(var i = 0; i<=nombreCase; i++){
+            var laCase = {
+                ligne : l,
+                colonne : c,
+                couleur : "white"
+            };
+            //Passer a la ligne
+            if(laCase.colonne==$scope.tailleCaseTable){
+                c=0;
+                l++;
+            }
+            $scope.caseTable.push(laCase);
+            c++;
+        }
+    };
+
+
+
+    /*var infinite = 99999;
     var taillePlateau = 4;
     var plateau = new Array();
 
@@ -89,10 +114,10 @@ app.controller('MainController', function($scope){
         });
     };
 
-    /*$scope.jouerIA = function(){
+    *//*$scope.jouerIA = function(){
         plateau = $scope.caseTableToPlateau();
         $scope.plateauToCaseTable(playIA());
-    };*/
+    };*//*
 
     var ColorEnum = {
         RED : 'blue',
@@ -269,7 +294,7 @@ app.controller('MainController', function($scope){
             return x;
         else
             return y;
-    }
+    }*/
 
 });
 app.controller('PlateauController', function($scope){

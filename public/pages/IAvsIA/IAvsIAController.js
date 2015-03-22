@@ -339,14 +339,6 @@ app.controller('IAvsIAController', function($scope){
         });
     };
 
-
-
-    function coordonneeToCaseTable(ligne, colonne){
-        var index = ligne*taillePlateau;
-        index += colonne;
-        return index;
-    }
-
     $scope.width = function(ligne){
         var multi = 20+(ligne*2);
         return ligne * multi;
@@ -549,12 +541,30 @@ app.controller('IAvsIAController', function($scope){
         $scope.caseTable[indiceMeilleurScore].couleur = 'blue';
     }
 
-    function jouerIA2(){
+    var gagne = 'white';
+    while(gagne=='white'){
 
+
+        var coordonnee = jouerIA($scope.caseTableToPlateau());
+        var index = coordonneeToCaseTable(coordonnee.ligne, coordonnee.colonne);
+        $scope.caseTable[index].couleur = 'yellow';
+
+        //jouerIA2();
+        //init tableScore
+        $scope.caseTable.forEach(function(laCase){
+            laCase.tableScore = 1;
+        });
+
+        //Scoring
+        scoreCaseTable();
+        premierCercle();
+        meilleurScore();
+
+        gagne = gagnant($scope.caseTableToPlateau());
     }
 
     $scope.jouer = function(i){
-        if ($scope.caseTable[i].couleur == "white"){
+        /*if ($scope.caseTable[i].couleur == "white"){
             $scope.caseTable[i].couleur = $scope.joueur;
 
             var g = gagnant($scope.caseTableToPlateau());
@@ -562,27 +572,14 @@ app.controller('IAvsIAController', function($scope){
                 alert('les ' + g + ' gagne')
             }
 
-            //jouerIA2();
-            //init tableScore
-            $scope.caseTable.forEach(function(laCase){
-                laCase.tableScore = 1;
-            });
 
-            //Scoring
-            scoreCaseTable();
-            premierCercle();
-            meilleurScore();
-
-            var coordonnee = jouerIA($scope.caseTableToPlateau());
-            var index = coordonneeToCaseTable(coordonnee.ligne, coordonnee.colonne);
-            $scope.caseTable[index].couleur = 'yellow';
 
 
             var gagn = gagnant($scope.caseTableToPlateau());
             if(gagn!='white'){
                 alert('les ' + gagn + ' gagne')
             }
-        }
+        }*/
     };
 
 });
