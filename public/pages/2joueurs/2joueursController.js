@@ -9,7 +9,7 @@ app.controller('2joueursController', function($scope){
     var taillePlateau = 4;
 
 
-    $scope.caseTable = [
+    /*$scope.caseTable = [
         {
             ligne:1,
             colonne:1,
@@ -90,7 +90,8 @@ app.controller('2joueursController', function($scope){
             colonne:4,
             couleur:"white"
         }
-    ];
+    ];*/
+    $scope.generateurTable();
 
     $scope.width = function(ligne){
         var multi = 20+(ligne*2);
