@@ -186,8 +186,6 @@ app.controller('JoueurVsIA1Controller', function($scope){
             }
         });
 
-        console.log(listeMini);
-
         if(listeMini.length == 1){
             return listeMini[0];
         } else {
@@ -229,7 +227,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
                 }
             }
 
-            return v;
+            return v/depth;
         }
     }
 

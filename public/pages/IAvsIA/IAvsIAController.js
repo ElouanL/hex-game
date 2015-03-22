@@ -229,7 +229,7 @@ app.controller('IAvsIAController', function($scope){
                 }
             }
 
-            return v;
+            return v/depth;
         } else { //Joueur IA
             var v = infinite;
 
@@ -244,7 +244,7 @@ app.controller('IAvsIAController', function($scope){
                 }
             }
 
-            return v;
+            return v/depth;
         }
     }
 
