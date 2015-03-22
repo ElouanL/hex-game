@@ -209,7 +209,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
                         v = max(v, alphabeta(plateau, posI+k, posJ+l, depth - 1, alpha, beta, player));
                         alpha = max(alpha, v);
                         if (beta <= alpha)
-                            return v;
+                            return v/depth;
                     }
                 }
             }
@@ -224,7 +224,7 @@ app.controller('JoueurVsIA1Controller', function($scope){
                         v = min(v, alphabeta(plateau, posI+k, posJ+l, depth - 1, alpha, beta, player));
                         beta = min(beta, v);
                         if (beta <= alpha)
-                            return v;
+                            return v/depth;
                     }
                 }
             }
@@ -245,29 +245,43 @@ app.controller('JoueurVsIA1Controller', function($scope){
             var victorious = gagnant(plateauC);
 
             if(victorious == ColorEnum.YELLOW) {
-                return -12000;
-            } else if(victorious == ColorEnum.BLUE) {
-                return 12000;
-            } else {
-                var score = 0;
-                for(var k=-1; k<=1; k++) {
-                    for (var l = -1; l <= 1; l++) {
-                        if (k != l && posI+k > 0 && posI+k < taillePlateau && posJ+l > 0 && posJ+l < taillePlateau) {
-                            if(plateau[posI+k][posJ+l] == ColorEnum.YELLOW) {
-                                score -= 1000;
-                            } else if(plateau[posI+k][posJ+l] == ColorEnum.BLUE) {
-                                score += 1000;
-                            }
+                if(posJ==0 || posJ==taillePlateau-1)
+                    return -13000;
+                else
+                    return -12000;
+            }
+
+            if(player == ColorEnum.YELLOW) {
+                plateauC[posI][posJ] = ColorEnum.BLUE;
+                victorious = gagnant(plateauC);
+                if(victorious == ColorEnum.BLUE) {
+                    if(posI==0 || posI==taillePlateau-1)
+                        return -11000;
+                    else
+                        return -10000;
+                }
+            }
+
+            var count = 0;
+            var score = 0;
+            for(var k=-1; k<=1; k++) {
+                for (var l = -1; l <= 1; l++) {
+                    if (k != l && posI+k > 0 && posI+k < taillePlateau && posJ+l > 0 && posJ+l < taillePlateau) {
+                        if(plateau[posI+k][posJ+l] == ColorEnum.YELLOW) {
+                            count += 1;
                         }
                     }
                 }
-                if(player == ColorEnum.YELLOW && (posJ==0 || posJ==taillePlateau-1) && score<0){
-                    score -= 1000;
-                } else if(player == ColorEnum.BLUE && (posI==0 || posI==taillePlateau-1) && score>0){
-                    score += 1000;
-                }
-                return score;
             }
+            if(count == 1 || count == 2){
+                score = -6000;
+            }
+            if(player == ColorEnum.YELLOW && (posJ==0 || posJ==taillePlateau-1) && score<0){
+                score -= 500;
+            } else if(player == ColorEnum.BLUE && (posI==0 || posI==taillePlateau-1) && score>0){
+                score += 500;
+            }
+            return score;
         }
     }
 
