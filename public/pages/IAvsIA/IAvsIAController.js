@@ -224,12 +224,12 @@ app.controller('IAvsIAController', function($scope){
                         v = max(v, alphabeta(plateau, posI+k, posJ+l, depth - 1, alpha, beta, player));
                         alpha = max(alpha, v);
                         if (beta <= alpha)
-                            return v/depth;
+                            return v;
                     }
                 }
             }
 
-            return v/depth;
+            return v;
         } else { //Joueur IA
             var v = infinite;
 
@@ -239,12 +239,12 @@ app.controller('IAvsIAController', function($scope){
                         v = min(v, alphabeta(plateau, posI+k, posJ+l, depth - 1, alpha, beta, player));
                         beta = min(beta, v);
                         if (beta <= alpha)
-                            return v/depth;
+                            return v;
                     }
                 }
             }
 
-            return v/depth;
+            return v;
         }
     }
 
