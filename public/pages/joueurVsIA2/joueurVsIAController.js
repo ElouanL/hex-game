@@ -293,7 +293,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                 var g = gagnant($scope.caseTableToPlateau());
                 if(g!='white'){
-                    alert('les ' + g + ' gagne')
+                    alert('Player ' + g + ' win !');
                 }
 
                 //jouerIA2();
@@ -310,7 +310,7 @@ app.controller('JoueurVsIA2Controller', function($scope){
 
                 var gagn = gagnant($scope.caseTableToPlateau());
                 if(gagn!='white'){
-                    alert('les ' + gagn + ' gagne')
+                    alert('Player ' + gagn + ' win !');
                 }
             }
         };

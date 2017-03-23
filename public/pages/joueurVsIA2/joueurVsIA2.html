@@ -1,7 +1,7 @@
 <!--svg ng-repeat="(i, case) in caseTable" width="16" height="10"><line fill="none" stroke="#0000FF" stroke-width="10" stroke-miterlimit="10" x1="0" y1="0" x2="50" y2="0"/></svg-->
 <br>
 <svg width="30" height="50"><line fill="none" stroke="#FFFF00" stroke-width="10" stroke-miterlimit="10" x1="0" y1="0" x2="30" y2="50"/></svg>
-<svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>
+<!--<svg width="{{width(caseTable[i-1].ligne)}}" height="50"></svg>-->
 <span ng-repeat="(i, case) in caseTable">
     <span ng-if="case.ligne>caseTable[i-1].ligne">
         <svg width="30" height="50"><line fill="none" stroke="#FFFF00" stroke-width="10" stroke-miterlimit="10" x1="0" y1="0" x2="30" y2="50"/></svg>

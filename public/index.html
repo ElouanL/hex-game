@@ -3,23 +3,24 @@
 <head lang="fr">
     <meta charset="UTF-8">
     <title>Hex Game</title>
-    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="vendor/css/jumbotron-narrow.css" />
-    <script src="bower_components/angularjs/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./vendor/css/jumbotron-narrow.css" />
+    <script src="./bower_components/angularjs/angular.js"></script>
+    <script src="./bower_components/angular-route/angular-route.js"></script>
     <!--script src="vendor/IA/IA.js"></script-->
-    <script src="app.js"></script>
-    <script type="text/javascript" src="routing.js"></script>
+    <script src="./app.js"></script>
+    <script type="text/javascript" src="./routing.js"></script>
 
 
     <!-- Controllers-->
-    <script src="controllers/plateauController.js"></script>
-    <script src="pages/2joueurs/2joueursController.js"></script>
-    <script src="pages/IAvsIA/IAvsIAController.js"></script>
-    <script src="pages/joueurVsIA1/joueurVsIAController.js"></script>
-    <script src="pages/joueurVsIA2/joueurVsIAController.js"></script>
+    <script src="./controllers/plateauController.js"></script>
+    <script src="./pages/2joueurs/2joueursController.js"></script>
+    <script src="./pages/IAvsIA/IAvsIAController.js"></script>
+    <script src="./pages/joueurVsIA1/joueurVsIAController.js"></script>
+    <script src="./pages/joueurVsIA2/joueurVsIAController.js"></script>
+    
     <!-- Directives -->
-    <script src="directives/plateauDirective.js"></script>
+    <script src="./directives/plateauDirective.js"></script>
 
 </head>
 
@@ -29,86 +30,48 @@
         <ul class="nav nav-pills pull-right">
             <li ng-class="{ active : $l.path().substr(0,9)=='/commerci' }">
                 <a href="#/2joueurs" ng-click="onglet=1">
-                    2 Joueurs
+                    2 Players
                 </a>
             </li>
+            <!--
             <li ng-class="{ active : $l.path().substr(0,9)=='/producti' }">
                 <a href="#/joueurvsia1" ng-click="onglet=2">
                     Joueur Vs IA1
                 </a>
             </li>
+            -->
             <li ng-class="{ active : $l.path().substr(0,9)=='/parametr' }">
                 <a href="#/joueurvsia2" ng-click="onglet=3">
-                    Joueur vs IA2
+                    Player vs AI
                 </a>
             </li>
+            <!--
             <li ng-class="{ active : $l.path().substr(0,9)=='/parametr' }">
                 <a href="#/iavsia" ng-click="onglet=3">
                     IA vs IA
                 </a>
             </li>
+            -->
         </ul>
         <h3 class="text-muted">Hex Game</h3>
     </div>
     <div class="row">
         <div class="col-md-2">
-            Nombre de lignes :
+            Number of lines :
             <select ng-model="tailleCaseTable" class="form-control">
                 <option value="9">9</option>
                 <option value="11">11</option>
-                <option value="14">14</option>
-                <option value="19">19</option>
+                <!--<option value="14">14</option>
+                <option value="19">19</option>-->
             </select>
+        </div>
+        <div class="col-md-10">
+           Players fill one square each turn to connect the ends of the board. The yellow player must cross the board from left to right. The blue player from top to bottom. Click on a box to get started!
         </div>
     </div>
     <div ng-view></div>
 
 </div>
-
-
-<!--
-<svg ng-click="couleur='black'" width="50" height="50">
-    <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
-             style="stroke-width:2;" stroke="{{couleur}}" fill="white" stroke-width="0.5" />
-</svg>
-<svg ng-click="ouou='yes'" width="50" height="50">
-    <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
-             style="stroke-width:2;" stroke="grey" fill="white" stroke-width="0.5" />
-</svg>
-<svg ng-click="ouou='yes'" width="50" height="50">
-    <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
-             style="stroke-width:2;" stroke="grey" fill="white" stroke-width="0.5" />
-</svg><br>
-<svg width="23" height="50"></svg>
-
-<svg ng-click="ouou='yes'" width="50" height="50">
-    <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
-             style="stroke-width:2;" stroke="grey" fill="white" stroke-width="0.5" />
-</svg>
-<svg ng-click="ouou='yes'" width="50" height="50">
-    <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
-             style="stroke-width:2;" stroke="grey" fill="white" stroke-width="0.5" />
-</svg>
-<svg ng-click="ouou='yes'" width="50" height="50">
-    <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
-             style="stroke-width:2;" stroke="grey" fill="white" stroke-width="0.5" />
-</svg><br>
-<svg width="50" height="50"></svg>
-
-<svg ng-click="ouou='yes'" width="50" height="50">
-    <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
-             style="stroke-width:2;" stroke="grey" fill="white" stroke-width="0.5" />
-</svg>
-<svg ng-click="ouou='yes'" width="50" height="50">
-    <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
-             style="stroke-width:2;" stroke="grey" fill="white" stroke-width="0.5" />
-</svg>
-<svg ng-click="ouou='yes'" width="50" height="50">
-    <polygon points="0,41.668 0,8.334 14.857,0 35.714,0 50,8.334 50,41.668 35.714,50 14.857,50"
-             style="stroke-width:2;" stroke="grey" fill="white" stroke-width="0.5" />
-</svg><br>
-<svg width="23" height="50"></svg>
--->
 
 </body>
 </html>

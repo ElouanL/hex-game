@@ -104,7 +104,7 @@ app.controller('2joueursController', function($scope){
                 $scope.joueur = ($scope.joueur == "blue") ? "yellow" : "blue";
                 var gagn = gagnant();
                 if(gagn!='white'){
-                    alert('les ' + gagn + ' gagne')
+                    alert('Player ' + gagn + ' win !')
                 };
             }
         };
