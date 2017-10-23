@@ -2,7 +2,12 @@
 Hex game in web application with the possibility of playing two or against AI
 *by Elouan Laurent*
 
-## Setup
+## How to play
+
+- Explanation and rules : https://en.wikipedia.org/wiki/Hex_(board_game)
+- Link to play : [https://elouanl.github.io/hex-game/public/](https://elouanl.github.io/hex-game/public/)
+
+## Setup localy
 ---------------------------
 ##### Prerequisites: 
 *Environnment*: Node & NPM
@@ -16,7 +21,7 @@ cd hex-game
 # Run the app
 node server.js
 ```
-Let go to [http://localhost:8008/](http://localhost:8008/)
+local address [http://localhost:8008/](http://localhost:8008/)
 
 ##### Changelog:
 - 2015-03-22: First version
