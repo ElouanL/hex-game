@@ -8,7 +8,6 @@ Hex game in web application with the possibility of playing two or against AI
 - Link to play : [https://elouanl.github.io/hex-game/public/](https://elouanl.github.io/hex-game/public/)
 
 ## Setup localy
----------------------------
 ##### Prerequisites: 
 *Environnment*: Node & NPM
 
